@@ -1,0 +1,3 @@
+select * from emp_combine;
+
+delete from emp_combine where occupation = 'nurse';

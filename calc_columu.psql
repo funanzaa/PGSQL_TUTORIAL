@@ -1,0 +1,4 @@
+select * from employee;
+
+-- default date interval format -> ISO 8601
+select *,age(dt) from visitor;

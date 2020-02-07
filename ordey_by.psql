@@ -1,0 +1,8 @@
+select * from benjerry order by calories DESC;
+select * from benjerry order by flavor;
+select * from benjerry order by flavor desc;
+select * from benjerry order by calories,fat_g;
+select * from benjerry order by calories,fat_g desc,protein_g asc;
+select flavor,sugars_g,carbs_g, sugars_g * 1.0 /carbs_g as sc_ratio from benjerry;
+select flavor,sugars_g,carbs_g, (sugars_g::real /carbs_g) as sc_ratio from benjerry 
+order by sc_ratio asc;

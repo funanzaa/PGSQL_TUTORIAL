@@ -1,0 +1,29 @@
+select * from applicant;
+
+update applicant
+    set skills = '{Python,R,SPSS}'
+    where id= 1;
+
+update applicant
+    set skills[1] = 'C++'
+    where id = '2';
+
+update applicant
+    set skills[5] =  'Swift'
+    where id = 2;
+
+    update applicant
+    set skills[4] =  'Objective-C'
+    where id = 2;
+
+update applicant
+    set skills =  array_append(skills,'Go') -- array_append คือการเพิ่ม ข้อมูลใน Array ต่อท้าย
+    where id = 1;
+
+update applicant
+    set skills =  array_replace(skills,'SQL','PostgresSQL'); -- array_replace คือ replace ข้อมูลใน Array
+
+update applicant
+    set skills =  array_remove(skills,'Java'); -- array_remove คือ remove ข้อมูลใน Array
+
+delete from applicant where 'C++' = any(skills); -- delete row ที่เป็น Array 

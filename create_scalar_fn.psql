@@ -1,0 +1,44 @@
+select * from employee;
+select *, work_exp * salary as bonus from employee;
+
+create or replace  FUNCTION bmi(h real, w real ) returns real language 'plpgsql' as $$
+BEGIN
+    return w / (h ^ 2);
+end;
+$$
+
+select bmi(7,70); 
+
+drop FUNCTION if EXISTS cylinder;
+
+create or replace  FUNCTION rectangle(h real, w real ) returns real language 'plpgsql' as $$
+BEGIN
+    return w * h;
+end;
+$$
+
+select rectangle(5,10);
+
+create or replace  FUNCTION square(s real) returns real language 'plpgsql' as $$
+BEGIN
+    return rectangle(s,s);
+end;
+$$
+
+select square(5);
+
+create or replace  FUNCTION cylinder(r real,h real) returns real language 'plpgsql' as $$
+declare circle_area real;
+BEGIN
+    circle_area := pi() * r ^ 2;
+    return circle_area * h ;
+end;
+$$
+
+select cylinder(1, 10);
+
+
+
+
+
+

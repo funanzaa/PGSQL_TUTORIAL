@@ -1,0 +1,11 @@
+select * from employee;
+
+select *
+    into emp_combine
+    from employee;
+
+select * from emp_combine;
+
+alter table emp_combine  add column emp_id serial primary key;
+
+select * from emp_combine;

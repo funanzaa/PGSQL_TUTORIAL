@@ -1,0 +1,15 @@
+select * from suits;
+select * from ranks;
+
+
+select r,suit
+from suits cross join ranks;
+
+select r,suit
+from suits ,ranks;
+
+select r || '-' || suit as card
+    into playing_cards
+from suits cross join ranks;
+
+select * from playing_cards;

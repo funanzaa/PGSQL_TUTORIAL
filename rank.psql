@@ -1,0 +1,35 @@
+select * from ps4;
+
+select name , critic_score,
+ rank() over (order by critic_score desc)
+ from ps4;
+
+ select name , critic_score,
+ rank() over (order by critic_score desc) as rank,
+ dense_rank() over (order by critic_score desc) as dense_rank
+ from ps4;
+
+select name , critic_score,
+ rank() over w as rank,
+ dense_rank() over w as dense_rank
+ from ps4
+ window w as (order by critic_score desc);
+
+ select year_of_release ,name , critic_score,
+ rank() over w as rank,
+ dense_rank() over w as dense_rank
+ from ps4
+ window w as (partition by year_of_release order by critic_score desc);
+
+  select year_of_release , genre ,name , critic_score,
+ rank() over w as rank,
+ dense_rank() over w as dense_rank
+ from ps4
+ window w as (partition by year_of_release,genre order by critic_score desc);
+
+select year_of_release , genre ,name , critic_score,
+ row_number() over w as row_number,
+ rank() over w as rank,
+ dense_rank() over w as dense_rank
+ from ps4
+ window w as (partition by year_of_release order by critic_score desc);

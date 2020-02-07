@@ -1,0 +1,21 @@
+select current_date, CURRENT_TIME,LOCALTIMESTAMP,now();
+
+select age('1984-11-27'::timestamp);
+--or
+select age(timestamp'1984-11-27');
+
+select current_date, current_date + 5;
+
+select LOCALTIMESTAMP,LOCALTIMESTAMP + '5 days' ::interval;
+select LOCALTIMESTAMP,LOCALTIMESTAMP + '5 months' ::interval;
+select LOCALTIMESTAMP,LOCALTIMESTAMP + '1 year' ::interval;
+select LOCALTIMESTAMP,LOCALTIMESTAMP + '2 hours' ::interval;
+select LOCALTIMESTAMP,LOCALTIMESTAMP + '12 minute' ::interval;
+
+select make_date(2019,9,10), make_time(14,17,30), make_timestamp(2019,9,10,14,17,30);
+
+select '2019-09-20 14:30'::timestamp - '2019-09-15 16:45'::timestamp;
+select '2019-09-20 14:30'::timestamp - '2019-09-15 16:45'::timestamp,
+    extract(day from '2019-09-20 14:30'::timestamp - '2019-09-15 16:45'::timestamp ),
+    extract(hour from '2019-09-20 14:30'::timestamp - '2019-09-15 16:45'::timestamp ),
+    extract(minute from '2019-09-20 14:30'::timestamp - '2019-09-15 16:45'::timestamp )

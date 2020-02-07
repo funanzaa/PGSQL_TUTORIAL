@@ -1,0 +1,34 @@
+create table staff (
+    id int PRIMARY key,
+    name varchar(50),
+    skills text
+);
+
+insert into staff(id,name,skills) values 
+(1,'Peter','C|Java|SQL'),
+(2,'Jane','C++|Python'),
+(3,'Ann','Word|Excel|PowerPoint'),
+(4,'Bruce','Swift|Obiective-C|Word|Excel|PowerPoint');
+
+select * from  staff;
+
+alter table staff  add column skills_a text[],add column skills_j jsonb; -- [] คือ การตัวนี้เก็บค่าได้หลายค่า
+
+select name,skills ,regexp_split_to_array(skills,'\|') from staff; --ตัวใส่เครื่องหมาย \| 
+
+update staff set skills_a = regexp_split_to_array(skills,'\|');
+
+select name,skills ,array_to_json(regexp_split_to_array(skills,'\|')) from staff; -- แปลง array to json
+
+update staff set skills_j = array_to_json(regexp_split_to_array(skills,'\|'));
+
+select * from staff where 'Python' = any(skills_a); --ค้นหาใน Array
+select * from staff where skills_j ? 'Python';  --ค้นหาใน json
+
+-- ต้องการสมาชิกบ้างตัว array
+select name, skills_a,skills_a[1] from staff;
+
+-- ต้องการสมาชิกบ้างตัว json
+select name, skills_a,skills_j,skills_a[1], skills_j -> 0 , skills_j ->> 0  from staff;
+
+--สรุปถ้าเป็น json index ใน array json จะเริ่มที่ 0 แต่ถ้าเป็น Array ธรรมดาจะเริ่มที่ 1

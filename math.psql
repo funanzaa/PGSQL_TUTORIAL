@@ -1,0 +1,28 @@
+select 7+3;
+select 7-3;
+select 7*3;
+select 7/3; --interger division (int/int = int)
+select 7.0/3; --real/int = real
+select 7::real/3; 
+select 7%3;
+select 2^3;
+select 5!;
+select |/2;
+select @(-3);
+
+create table basic_math (
+    a int,
+    b int,
+    c int
+);
+
+INSERT INTO basic_math values (7,3,-5);
+SELECT * from basic_math
+select a + b , a - b from basic_math;
+
+-- ^, * , / , +, -
+select  7 - 3 * 2 + 5 / 10.0;
+select 7 - (3 * 2 ) + (5 / 10.0);
+select 7 - 6 + .5;
+
+select * from employee;

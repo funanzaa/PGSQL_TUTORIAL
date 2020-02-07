@@ -1,0 +1,9 @@
+select * from benjerry limit 10;
+select * from benjerry where flavor ILIKE '%cookie%' or flavor ILIKE '%chocolate%' ;
+select * from benjerry where flavor ILIKE '%cookie%' and flavor ILIKE '%chocolate%' ;
+select * from benjerry where calories < 250;
+select * from benjerry where (calories < 250) and (flavor not ILIKE '%chocolate%');
+select * from benjerry where (calories < 250) and (flavor  ILIKE '%chocolate%');
+
+-- < , > , <=, >=, not, and , or
+select * from benjerry where (calories < 250 and sugars_g < 25) or flavor ILIKE '%chocolate%';

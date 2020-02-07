@@ -1,0 +1,20 @@
+select LOCALTIMESTAMP,
+    to_char(LOCALTIMESTAMP,'DD') "D",
+    to_char(LOCALTIMESTAMP,'DDD') "DDD",
+    to_char(LOCALTIMESTAMP,'Dy') "Dy";
+
+    select '2019-11-20'::date,
+    to_char('2019-11-20'::date,'DD') "D",
+    to_char('2019-11-20'::date,'DDD') "DDD",
+    to_char('2019-11-20'::date,'Dy') "Dy", --ตัวย่อ
+    to_char('2019-11-20'::date,'Day') "Day" ,
+    to_char('2019-11-20'::date,'MM') "MM" ,
+    to_char('2019-11-20'::date,'Mon') "Mon" ,
+    to_char('2019-11-20'::date,'Month') "Month" ;
+
+     select '2019-11-20 14:30'::timestamp,
+        to_char('2019-11-20 14:30'::timestamp, 'HH') "HH",
+        to_char('2019-11-20 14:30'::timestamp, 'HH24') "HH24",
+        to_char('2019-11-20 14:30'::timestamp, 'HH24:MI') "HH24:MI",
+        to_char('2019-11-20 14:30'::timestamp, 'HH24:MI am') "HH24:MI am",
+        to_char('2019-11-20 14:30'::timestamp, 'Dy DD-Mon-YYYY HH:MI am') "Dy DD-Mon-YYYY HH:MI am";

@@ -1,0 +1,44 @@
+select * from province;
+
+select random();
+
+select name , random() from province;
+
+select name , random() from province order by random() limit 1;
+
+select count(*) from province;
+
+select count(*),count(*) * .7, count(*) * .3 from province;
+
+select count(*),floor(count(*) * .7), floor(count(*) * .3) from province;   --floor ปัด ทศนิยมลง
+
+select name, random() from province order by random() limit (select floor(count(*) * .7) from province);
+
+select name, random() 
+    into training
+from province order by random() limit (select floor(count(*) * .7) from province); --ให้เก็บไว้ใน ตาราง training
+
+select * from training;
+
+-- split int 70:30 (training , test)
+drop table if EXISTS training, test;
+
+select *
+    into training
+from province order by random() limit (select floor(count(*) * .7) from province); --ให้เก็บไว้ใน ตาราง training
+
+
+select * from training;
+
+select * from province
+EXCEPT
+select * from training;  -- EXCEPT หมายถึง เอาทุกแถวที่มีอยู่ในตาราง province แต่ ไม่มีอยู่ใน ตาราง training 
+
+with cte as (
+    select * from province
+    EXCEPT
+    select * from training
+)
+select *
+into test
+from cte;

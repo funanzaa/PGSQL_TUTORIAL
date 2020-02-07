@@ -1,0 +1,17 @@
+select * from province;
+
+select table_to_xml('province',true,false,'');
+
+select query_to_xml('select p_id,name from province',true,false,'');
+
+select query_to_xml(E'select p_id,name from province where region =\'S\'',true,false,''); --การผสมที่เป็น text string
+
+select query_to_xml(E'select p_id,name from province where area_km2 > 15000',true,false,'');
+
+copy (
+select query_to_xml(E'select p_id,name from province where area_km2 > 15000',true,false,'')
+) to '/Users/kriengkrirat/Downloads/pv.xml' -- Export XML เป็น file
+
+copy (
+select query_to_xml(E'select p_id,name from province where area_km2 > 15000',true,false,'')
+) to '/Users/kriengkrirat/Downloads/pv2.xml' csv -- Export XML เป็น csv

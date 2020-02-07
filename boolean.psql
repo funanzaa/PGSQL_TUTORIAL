@@ -1,0 +1,7 @@
+select * from game_console;
+ALTER table game_console add COLUMN fav boolean;
+
+-- 'yes','y','t','true','1'
+-- 'no','n','f','false','0'
+update game_console set fav = 'yes' where platform = 'PS4';
+update game_console set fav = 'no' where platform = 'XOne';

@@ -1,0 +1,9 @@
+select * from province;
+
+select string_agg(name_en,',') from province;
+
+select string_agg(name_en,',') from province where region = 'S'; -- เฉพาะภาคใต้
+
+select region,string_agg(name_en,',') from province group by region ; -- แบ่งตามภาค
+
+select region,string_agg(name_en,',' order by name_en) from province group by region ; 

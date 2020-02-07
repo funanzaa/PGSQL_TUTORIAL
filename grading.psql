@@ -1,0 +1,50 @@
+drop table if EXISTS student;
+
+CREATE table student (
+    student_id int,
+    score numeric(5,2)
+);
+
+select student_id,
+    (random() * 60 + 40) ::numeric(5,2) score
+ from generate_series(1,50) student_id; -- generate id from 
+
+insert into student
+select student_id,
+    (random() * 60 + 40) ::numeric(5,2) score
+ from generate_series(1,50) student_id; -- insert int table student
+
+
+select student_id,score,
+    CASE    
+        when score between 85 and 100 then 'A'
+        when score between 70 and 84.999 then 'B'
+        when score between 60 and 69.999 then 'C'
+        when score between 50 and 59.999 then 'D'
+        else 'F'
+    end
+    from student;
+
+
+select student_id,score,
+    CASE    
+        when '[85, 100]' ::numrange @> score then 'A' --(85 <= score <= 100)
+        when '[70, 85)' ::numrange @> score then 'B' --(70 <= score < 85)
+        when '[60, 70)' ::numrange @> score then 'C' --(60 <= score < 70)
+        when '[50, 60)' ::numrange @> score then 'D' --(50 <= score < 60)
+        else 'F'
+    end
+    from student;
+
+with cte as (
+    select student_id,score,
+    CASE    
+        when '[85, 100]' ::numrange @> score then 'A' --(85 <= score <= 100)
+        when '[70, 85)' ::numrange @> score then 'B' --(70 <= score < 85)
+        when '[60, 70)' ::numrange @> score then 'C' --(60 <= score < 70)
+        when '[50, 60)' ::numrange @> score then 'D' --(50 <= score < 60)
+        else 'F'
+    end grade
+    from student
+)
+select grade , count(*) from cte group by grade order by grade desc; 

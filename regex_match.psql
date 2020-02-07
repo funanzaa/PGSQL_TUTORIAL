@@ -1,0 +1,20 @@
+select * from benjerry where flavor ILIKE '%banana%';
+-- contails ~ (case sensitive)
+select * from benjerry where flavor ~ 'banana';
+-- uncontails ~* (case insensitive)
+select * from benjerry where flavor ~* 'chocolate';
+-- begins with ^ (ขึ้นต้น)
+select * from benjerry where flavor ~* '^chocolate';
+--  ends with $ (ลงท้าย)
+select * from benjerry where flavor ~* 'fudge'; --contains
+select * from benjerry where flavor ~* 'fudge$'; -- ends withs
+-- chocolate of fudge
+select * from benjerry where flavor ~* 'chocolate|fudge|cookie';
+-- chocolate and fudge
+select * from benjerry where flavor ~* 'chocolate.*fudge|fudge.*chocolate';
+
+select * from benjerry where flavor ~* '(?=.*chocolate)(?=.*fudge)';
+select * from benjerry where flavor ~* '(?=.*fudge)(?=.*chocolate)';
+
+select * from benjerry where flavor ~* 'cake';
+select * from benjerry where flavor ~* '\ycake\y'; -- \y word boundary

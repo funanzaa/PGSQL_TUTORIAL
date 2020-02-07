@@ -1,0 +1,18 @@
+select * from applicant where 'SQL' = any(skills);
+
+select * from applicant where 'SQL' = any(skills) and 'Python' = any (skills);
+
+-- @> (contains) ใช้แทน and ของ Array
+select * from applicant
+    where skills @> array['SQL','Python']::varchar[];
+
+select * from applicant;
+
+select * from applicant where 'SQL' = any(skills) or 'MySQL' = any (skills);
+
+select id, name, unnest(skills) skills from applicant;
+
+with cte as (
+    select id, name, unnest(skills) skills from applicant
+)
+select DISTINCT(id),name,skills from cte where skills ilike '%Sql%';

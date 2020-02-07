@@ -1,0 +1,15 @@
+select * from invoice;
+
+select billing_country,total
+    from invoice;
+
+select billing_country,sum(total) as "# billing_total"
+    from invoice
+    group by billing_country;
+
+    select billing_country,sum(total) as "# billing_total"
+    from invoice
+    group by billing_country
+    having sum(total) > 300
+    order by sum(total) desc 
+    limit 5;

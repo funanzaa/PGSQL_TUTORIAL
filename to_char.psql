@@ -1,0 +1,16 @@
+select  1000000,
+        to_char(1000000,'9,999,999,999'),
+        to_char(1000000,'999,999');
+
+select 1234.758,
+        to_char(1234.758,'9,999.99'),
+        to_char(1234.758,'9G999D99'); -- G (locale)
+
+select * from country limit 10;
+
+select surfacearea,
+to_char(surfacearea,'9G999G999G999'),
+population,
+to_char(population / 1e6,'9G999G999G999D99') || ' m', --1e6 = 1,000,000
+gnp
+from country limit 10;
